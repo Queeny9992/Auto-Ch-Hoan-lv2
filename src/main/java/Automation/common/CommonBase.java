@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,8 +27,8 @@ public class CommonBase {
 	public static WebDriver driver;
     public Duration initWaitTime = Duration.ofSeconds(4);
     public WebDriver setupDriver(String browser) {
-    	Automation.constant.CT_Account ct= new Automation.constant.CT_Account();
-    	String url = ct.webURL ;
+    	Automation.constant.CT_Account_Rise ct= new Automation.constant.CT_Account_Rise();
+    	String url = ct.Web_URL;
     	switch(browser){
     	case "chrome":
     		return initChromeDriver(url);
@@ -118,6 +119,11 @@ public class CommonBase {
         WebElement element = getElementPresentDOM(locator);
         element.sendKeys(value);
     }
+    
+    public void typeKeyTabs(By locator) {
+    	WebElement element = getElementPresentDOM(locator);
+    	element.sendKeys(Keys.TAB);
+    }
     /**
      * pause driver in timeInMillis
      *
@@ -200,6 +206,12 @@ String curDir = System.getProperty("user.dir");
 		System.out.println("currentMonthAsString: " + currentMonth);
 		return currentMonth;
     }
+    
+    public void clickJavaScript(By locator) {
+		WebElement element = getElementPresentDOM(locator);
+		((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+	}
+
 		
 }
     

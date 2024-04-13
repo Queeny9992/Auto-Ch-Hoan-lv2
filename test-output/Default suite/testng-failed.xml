@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Automation.testsuite.LoginTestProvider">
+      <class name="Automation.testsuite.homework_TaskPage">
         <methods>
-          <include name="loginFailInputEmpty" invocation-numbers="0 1"/>
-          <include name="OpenChrome"/>
-          <include name="closeBrowser"/>
+          <include name="OpenBrowser"/>
+          <include name="filterByStatus"/>
+          <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- Automation.testsuite.LoginTestProvider -->
+      </class> <!-- Automation.testsuite.homework_TaskPage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

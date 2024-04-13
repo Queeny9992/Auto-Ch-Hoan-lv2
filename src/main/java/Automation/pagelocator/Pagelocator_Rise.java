@@ -1,8 +1,5 @@
 package Automation.pagelocator;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -10,19 +7,14 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.internal.thread.ThreadExecutionException;
 
-import Automation.common.CommonBase;
-
-public class LoginPageFactory {
-
+public class Pagelocator_Rise {
 
 	private WebDriver driver;
 	
-	public LoginPageFactory(WebDriver _driver) {
+	public Pagelocator_Rise(WebDriver _driver) {
 		
 		this.driver = _driver;
 		PageFactory.initElements(driver, this);
@@ -209,8 +201,4 @@ public class LoginPageFactory {
 
 
 
-	
-	
-	
-	
 }
