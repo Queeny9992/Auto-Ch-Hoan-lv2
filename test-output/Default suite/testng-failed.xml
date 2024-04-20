@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Automation.testsuite.homework_TaskPage">
+      <class name="Automation.testsuite.homework_TaskPage2">
         <methods>
+          <include name="CloseBrowser"/>
           <include name="OpenBrowser"/>
           <include name="filterByStatus"/>
-          <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- Automation.testsuite.homework_TaskPage -->
+      </class> <!-- Automation.testsuite.homework_TaskPage2 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

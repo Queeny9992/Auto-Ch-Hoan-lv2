@@ -19,7 +19,7 @@ import Automation.constant.CT_Account_Rise;
 import Automation.constant.CT_Account_Rise;
 import Automation.pagelocator.Pagelocator_Rise;
 
-public class homework_TaskPage extends CommonBase{
+public class homework_TaskPage2 extends CommonBase{
 
 	@BeforeMethod
 	@Parameters("browserTest")
@@ -46,6 +46,9 @@ public class homework_TaskPage extends CommonBase{
 		}
 	}
 	
+	
+	
+	
 	//Priority hien thi o cot Title, vì nó ko có text nên phải so sánh element
 	
 	public static boolean assertElementPresent(WebDriver driver, By locator) {
@@ -57,7 +60,31 @@ public class homework_TaskPage extends CommonBase{
         }
     }
 
-		
+	//check status - check 1 status
+			private void assertListstatus(String AssertStatusValue) {
+				List<WebElement> listStatus = driver.findElements(By.xpath("//table[@id='task-table']//tbody//tr/child::td[9]/a"));
+				for (WebElement item:listStatus) {
+					String actual = item.getText();
+					assertEquals(actual, AssertStatusValue);
+							
+				}
+			}
+			
+			
+	// check status - check > 1 status, check nhieu status
+			private boolean checkFilterStatus(String AssertStatusValue1, String AssertStatusValue2) {
+				boolean result=false;
+				List<WebElement> listRelatedTo = driver.findElements(By.xpath("//table[@id='task-table']//tbody//tr/child::td[9]/a"));// Element chứa cột status
+				for (WebElement item : listRelatedTo) {
+					String actual = item.getText(); // Nếu text của Status là filter1 và filter2
+					if(actual.equalsIgnoreCase(AssertStatusValue1)||actual.equalsIgnoreCase(AssertStatusValue2))
+					{
+						result = true;// thì kqua là True
+					}
+					else result = false; // Ngược lại thì kqua là False
+				}
+				return result;// Trả về kqua
+			}
 		
 		
 	
@@ -175,14 +202,14 @@ public class homework_TaskPage extends CommonBase{
 
 	}
 	
-	@Test(priority=4)  //bài tập này chạy đến đoạn kiểm tra select thì bị tịt
+	@Test(priority=4)  //kiem tra theo trang thai status - kiem tra 1 trang thai 
 	public void filterByStatus() throws InterruptedException{
 		Pagelocator_Rise login = new Pagelocator_Rise(driver);
 		login.LoginFunction(CT_Account_Rise.Email,CT_Account_Rise.Password );
 		
-		
 		String AssertLabelValue ="Design";
 		String AssignedTovalueFilter ="Sara Ann";
+		String AssertStatusValue ="Done";
 		
 		//click Task, click show filter +
 		click(By.xpath("//span[text()='Tasks']"));
@@ -200,15 +227,63 @@ public class homework_TaskPage extends CommonBase{
 		
 		//click Status , kiem tra cac gia gia tri cua no da select hay chua, neu da select roi thi xoa di, va chon lai cai minh muon select
 		click(By.xpath("//div/span/button[@type='button']"));
-		Thread.sleep(3000);
 
-		WebElement Todo = driver.findElement(By.xpath("//ul/li[@class='list-group-item clickable active' and text()='To do']"));
-		WebElement Inprogress =driver.findElement(By.xpath("//div[@class='dropdown-menu show']/ul/li[@class='list-group-item clickable active' and text()='In progress']"));
-		WebElement Review = driver.findElement(By.xpath("//div[@class='dropdown-menu show']/ul/li[@class='list-group-item clickable active' and text()='Review']"));
-		WebElement Done =driver.findElement(By.xpath("//div[@class='dropdown-menu show']/ul/li[@class='list-group-item clickable' and text()='Done']"));
+		click(By.xpath("//ul/li[text()='To do']"));// bo click toto
+		click(By.xpath("//ul/li[text()='In progress']"));
+		click(By.xpath("//ul/li[text()='Review']"));
+		click(By.xpath("//ul/li[text()='Done']"));		//click Done
 		
-		Todo.click();
+		Thread.sleep(3000);
+		assertListstatus(AssertStatusValue);
+		
 	}
+	
+	@Test(priority = 5) //kiem tra theo status -nhieu status 1 luc
+	public void filterByMultiStatus() throws InterruptedException{
+		Pagelocator_Rise login = new Pagelocator_Rise(driver);
+		login.LoginFunction(CT_Account_Rise.Email,CT_Account_Rise.Password );
+		
+		String AssertLabelValue ="Design";
+		String AssignedTovalueFilter ="Sara Ann";
+		String AssertStatusValue1 ="Done";
+		String AssertStatusValue2 ="In progress";
+
+		
+		//click Task, click show filter +
+		click(By.xpath("//span[text()='Tasks']"));
+		click(By.xpath("//button[@class='btn btn-default show-filter-form-button']"));
+				
+		//click Team memmber , chon gia tri Sara Ann
+		click(By.xpath("//div[@id='s2id_autogen11']"));
+		type(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"),AssignedTovalueFilter);
+		typeKeyTabs(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"));
+				
+		//click Label va chon label -- Design
+		click(By.xpath("//div[@id='s2id_autogen15']"));
+		type(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"),AssertLabelValue);
+		typeKeyTabs(By.xpath("(//input[@type='text' and @autocomplete='off'])[8]"));
+		
+		//click Status , kiem tra cac gia gia tri cua no da select hay chua, neu da select roi thi xoa di, va chon lai cai minh muon select
+		click(By.xpath("//div/span/button[@type='button']"));
+
+		click(By.xpath("//ul/li[text()='To do']"));// bo click toto
+		click(By.xpath("//ul/li[text()='Review']"));
+		click(By.xpath("//ul/li[text()='Done']"));		//click Done
+		
+		Thread.sleep(3000);
+		checkFilterStatus(AssertStatusValue1,AssertStatusValue2);
+		
+	}
+
+	@Test(priority = 6) //Test filter ngay thang
+	public void FilterDeadline() throws InterruptedException{
+		Pagelocator_Rise login = new Pagelocator_Rise(driver);
+		login.LoginFunction(CT_Account_Rise.Email,CT_Account_Rise.Password );
+		
+	}
+	
+	
+	
 	
 	@AfterMethod
 	public void CloseBrowser() {
