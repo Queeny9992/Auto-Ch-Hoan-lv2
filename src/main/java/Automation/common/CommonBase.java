@@ -18,7 +18,10 @@ import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import automation.constant.CT_Account;
+
+
+import Automation.constant.CT_Account_Alada;
+import Automation.constant.CT_Account_Rise;
 
 //import static automation.common.TestLogger.*;
 
@@ -114,6 +117,9 @@ public class CommonBase {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         element.click();
     }
+    
+   
+    
     public void type(By locator, String value)
     {
         WebElement element = getElementPresentDOM(locator);
