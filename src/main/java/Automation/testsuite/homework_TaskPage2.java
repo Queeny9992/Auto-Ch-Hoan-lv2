@@ -19,11 +19,12 @@ import Automation.constant.CT_Account_Rise;
 import Automation.constant.CT_Account_Rise;
 import Automation.pagelocator.Pagelocator_Rise;
 
+
 public class homework_TaskPage2 extends CommonBase{
 
 	@BeforeMethod
 	@Parameters("browserTest")
-	
+
 	public void OpenBrowser(@Optional("Chrome") String browserName) {
 		setupDriver(browserName);
 		driver.get(Automation.constant.CT_Account_Rise.Web_URL);

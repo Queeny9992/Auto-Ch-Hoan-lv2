@@ -22,7 +22,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Automation.constant.CT_Account_Alada;
 import Automation.constant.CT_Account_Rise;
-
 //import static automation.common.TestLogger.*;
 
 public class CommonBase {

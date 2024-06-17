@@ -11,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class Pagelocator_Rise {
-
 	private WebDriver driver;
 	
 	public Pagelocator_Rise(WebDriver _driver) {

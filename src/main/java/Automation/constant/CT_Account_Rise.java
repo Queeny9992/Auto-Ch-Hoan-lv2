@@ -2,7 +2,6 @@ package Automation.constant;
 
 import org.openqa.selenium.By;
 
-
 public class CT_Account_Rise {
 	
 	

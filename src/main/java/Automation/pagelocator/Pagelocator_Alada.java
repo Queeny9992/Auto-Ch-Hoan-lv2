@@ -23,7 +23,6 @@ import Automation.common.CommonBase;
 
 
 
-
 public class Pagelocator_Alada  extends CommonBase{
 	
 	private WebDriver driver;

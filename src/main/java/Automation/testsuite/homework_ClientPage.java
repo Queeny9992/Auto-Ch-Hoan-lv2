@@ -17,12 +17,11 @@ import org.testng.annotations.Test;
 import Automation.common.CommonBase;
 import Automation.constant.CT_Account_Rise;
 import Automation.pagelocator.Pagelocator_Rise;
-
 public class homework_ClientPage extends CommonBase{
 
 	@BeforeMethod
 	@Parameters("browserTest")
-	
+
 	public void OpenBrowser(@Optional("Chrome") String browserName) {
 		setupDriver(browserName);
 		driver.get(Automation.constant.CT_Account_Rise.Web_URL);
